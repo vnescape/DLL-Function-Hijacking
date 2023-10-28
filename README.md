@@ -48,7 +48,7 @@ extern "C" __declspec(dllexport) long function1(int a)
 }
 ```
 
-If we do not know the signature of e.g. ```function2``` we can can also hijack it by first saving the CPU registers, i.e. the state. Then we can execute our own code and restore those previously saved registers and continue to execute original function as if nothing had happened. To save and restore these named registers we can use the define statements in ```push_pop_registers.h```.
+If we do not know the signature of e.g. ```function2``` we can can also hijack it by first saving the CPU registers, i.e. the state. Then we can execute our own code and restore those previously saved registers and continue to execute original function as if nothing had happened. To save and restore these named registers we can use the define statements in ```push_pop_registers.h```. This will NOT work on MSVC compiler as it does not support ARM and amd64 inline assembly at the time of writing this. LLVM with clang supports x86-64bit inline assembly.
 
 ```
 extern "C" __declspec(dllexport) void function2(void)
